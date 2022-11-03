@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<rss version="0.91">
+  <channel>
+    <title>ms-client - Checkstyle report</title>
+    <link>https://spring.io/projects/spring-boot/ms-client</link>
+    <description>ms-client - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2022</copyright>
+    <item>
+      <title>File: 17,
+             Errors: 7,
+             Warnings: 0,
+             Infos: 0
+      </title>
+            <link>https://spring.io/projects/spring-boot/ms-client/checkstyle.html</link>
+      <description>
+        <p>Click <a href="https://spring.io/projects/spring-boot/ms-client/checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="https://spring.io/projects/spring-boot/ms-client/checkstyle.html#com.nttdata.bootcamp.msclient.exception.ResourceNotFoundException.java">com/nttdata/bootcamp/msclient/exception/ResourceNotFoundException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://spring.io/projects/spring-boot/ms-client/checkstyle.html#com.nttdata.bootcamp.msclient.model.Loan.java">com/nttdata/bootcamp/msclient/model/Loan.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://spring.io/projects/spring-boot/ms-client/checkstyle.html#com.nttdata.bootcamp.msclient.infrastructure.ClientRepository.java">com/nttdata/bootcamp/msclient/infrastructure/ClientRepository.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://spring.io/projects/spring-boot/ms-client/checkstyle.html#com.nttdata.bootcamp.msclient.application.ClientService.java">com/nttdata/bootcamp/msclient/application/ClientService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://spring.io/projects/spring-boot/ms-client/checkstyle.html#com.nttdata.bootcamp.msclient.config.WebClientConfig.java">com/nttdata/bootcamp/msclient/config/WebClientConfig.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://spring.io/projects/spring-boot/ms-client/checkstyle.html#com.nttdata.bootcamp.msclient.dto.SummaryProductsDto.java">com/nttdata/bootcamp/msclient/dto/SummaryProductsDto.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://spring.io/projects/spring-boot/ms-client/checkstyle.html#com.nttdata.bootcamp.msclient.model.Client.java">com/nttdata/bootcamp/msclient/model/Client.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://spring.io/projects/spring-boot/ms-client/checkstyle.html#com.nttdata.bootcamp.msclient.dto.ErrorDetail.java">com/nttdata/bootcamp/msclient/dto/ErrorDetail.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://spring.io/projects/spring-boot/ms-client/checkstyle.html#com.nttdata.bootcamp.msclient.application.ClientServiceImpl.java">com/nttdata/bootcamp/msclient/application/ClientServiceImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://spring.io/projects/spring-boot/ms-client/checkstyle.html#com.nttdata.bootcamp.msclient.model.Credit.java">com/nttdata/bootcamp/msclient/model/Credit.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://spring.io/projects/spring-boot/ms-client/checkstyle.html#com.nttdata.bootcamp.msclient.util.Constants.java">com/nttdata/bootcamp/msclient/util/Constants.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://spring.io/projects/spring-boot/ms-client/checkstyle.html#com.nttdata.bootcamp.msclient.controller.ClientController.java">com/nttdata/bootcamp/msclient/controller/ClientController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://spring.io/projects/spring-boot/ms-client/checkstyle.html#com.nttdata.bootcamp.msclient.infrastructure.LoanRepository.java">com/nttdata/bootcamp/msclient/infrastructure/LoanRepository.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://spring.io/projects/spring-boot/ms-client/checkstyle.html#com.nttdata.bootcamp.msclient.exception.BlogAppException.java">com/nttdata/bootcamp/msclient/exception/BlogAppException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://spring.io/projects/spring-boot/ms-client/checkstyle.html#com.nttdata.bootcamp.msclient.exception.GlobalExceptionHandler.java">com/nttdata/bootcamp/msclient/exception/GlobalExceptionHandler.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://spring.io/projects/spring-boot/ms-client/checkstyle.html#com.nttdata.bootcamp.msclient.infrastructure.CreditRepository.java">com/nttdata/bootcamp/msclient/infrastructure/CreditRepository.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://spring.io/projects/spring-boot/ms-client/checkstyle.html#com.nttdata.bootcamp.msclient.MsClientApplication.java">com/nttdata/bootcamp/msclient/MsClientApplication.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+

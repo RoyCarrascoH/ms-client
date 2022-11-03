@@ -18,7 +18,7 @@
 <file name="C:\Informacion Empresarial\Repositorio GitHub\ms-client\src\main\java\com\nttdata\bootcamp\msclient\exception\BlogAppException.java">
 </file>
 <file name="C:\Informacion Empresarial\Repositorio GitHub\ms-client\src\main\java\com\nttdata\bootcamp\msclient\exception\GlobalExceptionHandler.java">
-<error line="28" column="13" severity="error" message="Ocurrió una excepción - expecting EOF, found &apos;return&apos;" source="com.puppycrawl.tools.checkstyle.TreeWalker"/>
+<error line="26" column="13" severity="error" message="Ocurrió una excepción - expecting EOF, found &apos;return&apos;" source="com.puppycrawl.tools.checkstyle.TreeWalker"/>
 </file>
 <file name="C:\Informacion Empresarial\Repositorio GitHub\ms-client\src\main\java\com\nttdata\bootcamp\msclient\exception\ResourceNotFoundException.java">
 </file>
@@ -38,9 +38,7 @@
 <file name="C:\Informacion Empresarial\Repositorio GitHub\ms-client\src\main\java\com\nttdata\bootcamp\msclient\model\Loan.java">
 </file>
 <file name="C:\Informacion Empresarial\Repositorio GitHub\ms-client\src\main\java\com\nttdata\bootcamp\msclient\MsClientApplication.java">
-<error line="15" column="1" severity="error" message="File contains tab characters (this is the first instance)." source="com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck"/>
 </file>
 <file name="C:\Informacion Empresarial\Repositorio GitHub\ms-client\src\main\java\com\nttdata\bootcamp\msclient\util\Constants.java">
-<error line="10" column="1" severity="error" message="File contains tab characters (this is the first instance)." source="com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck"/>
 </file>
 </checkstyle>
