@@ -1,20 +1,29 @@
 package com.nttdata.bootcamp.msclient.application;
 
+import com.nttdata.bootcamp.msclient.dto.SummaryProductsDto;
 import com.nttdata.bootcamp.msclient.exception.ResourceNotFoundException;
 import com.nttdata.bootcamp.msclient.infrastructure.ClientRepository;
+import com.nttdata.bootcamp.msclient.infrastructure.CreditRepository;
+import com.nttdata.bootcamp.msclient.infrastructure.LoanRepository;
 import com.nttdata.bootcamp.msclient.model.Client;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
+@Slf4j
 public class ClientServiceImpl implements ClientService {
 
     @Autowired
     private ClientRepository clientRepository;
+
+    @Autowired
+    private LoanRepository loanRepository;
+
+    @Autowired
+    private CreditRepository creditRepository;
 
     @Override
     public Flux<Client> findAll() {
@@ -56,6 +65,7 @@ public class ClientServiceImpl implements ClientService {
                                     c.setCellphone(client.getCellphone());
                                     c.setEmail(client.getEmail());
                                     c.setState(client.getState());
+                                    c.setProfile(client.getProfile());
                                     return clientRepository.save(c);
                                 });
                     } else {
@@ -73,9 +83,41 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Mono<Client> clientbydocumentNumber (String documentNumber){
+    public Mono<Client> clientByDocumentNumber(String documentNumber) {
         return Mono.just(documentNumber)
                 .flatMap(clientRepository::findByDocumentNumber)
                 .switchIfEmpty(Mono.error(new ResourceNotFoundException("Cliente", "documentNumber", documentNumber)));
     }
+
+    @Override
+    public Mono<Client> updateProfileByDocumentNumber(String documentNumber, String profile) {
+        return Mono.just(documentNumber)
+                .flatMap(clientRepository::findByDocumentNumber)
+                .switchIfEmpty(Mono.error(new ResourceNotFoundException("Cliente", "documentNumber", documentNumber)))
+                .flatMap(c -> {
+                    log.info("profile-------: " + profile);
+                    c.setProfile(profile.equals("0") ? null : profile);
+                    return Mono.just(c);
+                })
+                .flatMap(c -> c.validateClientProfile().then(Mono.just(c)))
+                .flatMap(c -> update(c, c.getIdClient()));
+    }
+
+    @Override
+    public Mono<SummaryProductsDto> getSummaryOfCustomersProducts(String documentNumber) {
+
+        SummaryProductsDto mapperDtoCredit = new SummaryProductsDto();
+
+        return creditRepository.findCreditsByDocumentNumber(documentNumber)
+                .collectList()
+                .flatMap(c -> {
+                    return loanRepository.findLoanByDocumentNumber(documentNumber)
+                            .collectList()
+                            .flatMap(l -> {
+                                return mapperDtoCredit.mapperToSummaryProductsDtoOfCredit(c, l, documentNumber);
+                            });
+                });
+
+    }
+
 }

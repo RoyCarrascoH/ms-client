@@ -1,6 +1,5 @@
 package com.nttdata.bootcamp.msclient.exception;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,6 +23,11 @@ public class ResourceNotFoundException extends RuntimeException {
         this.resourceName = resourceName;
         this.fieldName = fieldName;
         this.fieldValue = fieldValue;
+    }
+
+    public ResourceNotFoundException(String resourceName) {
+        super(String.format(resourceName));
+        this.resourceName = resourceName;
     }
 
 }
