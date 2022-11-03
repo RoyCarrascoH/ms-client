@@ -1,6 +1,7 @@
 package com.nttdata.bootcamp.msclient.model;
 
 import com.nttdata.bootcamp.msclient.exception.ResourceNotFoundException;
+import lombok.Builder;
 import lombok.ToString;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +23,7 @@ import javax.validation.constraints.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Builder
 @Slf4j
 public class Client {
 
