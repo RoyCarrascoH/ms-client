@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClientController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ms-client</a> &gt; <a href="index.source.html" class="el_package">com.nttdata.bootcamp.msclient.controller</a> &gt; <span class="el_source">ClientController.java</span></div><h1>ClientController.java</h1><pre class="source lang-java linenums">package com.nttdata.bootcamp.msclient.controller;
+
+import java.net.URI;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import com.nttdata.bootcamp.msclient.application.ClientService;
+import com.nttdata.bootcamp.msclient.dto.SummaryProductsDto;
+import com.nttdata.bootcamp.msclient.model.Client;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import javax.validation.Valid;
+
+@RestController
+<span class="fc" id="L23">@Slf4j</span>
+@RequestMapping(&quot;/api/clients&quot;)
+@RefreshScope
+<span class="fc" id="L26">public class ClientController {</span>
+    @Value(&quot;${message.demo}&quot;)
+    private String demoString;
+
+    @Autowired
+    private ClientService service;
+
+    @GetMapping
+    public Mono&lt;ResponseEntity&lt;Flux&lt;Client&gt;&gt;&gt; listClients() {
+<span class="nc" id="L35">        return Mono.just(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(service.findAll()));</span>
+    }
+
+    @GetMapping(&quot;/{id}&quot;)
+    public Mono&lt;ResponseEntity&lt;Client&gt;&gt; viewClientDetails(@PathVariable(&quot;id&quot;) String idClient) {
+<span class="nc" id="L40">        log.info(&quot;---demoString: &quot; + demoString);</span>
+<span class="nc" id="L41">        return service.findById(idClient).map(c -&gt; ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(c));</span>
+    }
+
+    @GetMapping(&quot;/documentNumber/{documentNumber}&quot;)
+    public Mono&lt;ResponseEntity&lt;Client&gt;&gt; clientByDocumentNumber(@PathVariable(&quot;documentNumber&quot;) String documentNumber) {
+<span class="nc" id="L46">        return service.clientByDocumentNumber(documentNumber).map(c -&gt; ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(c));</span>
+    }
+
+    @PostMapping
+    public Mono&lt;ResponseEntity&lt;Map&lt;String, Object&gt;&gt;&gt; saveClient(@Valid @RequestBody Mono&lt;Client&gt; monoClient) {
+<span class="nc" id="L51">        Map&lt;String, Object&gt; request = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L52">        return monoClient.flatMap(client -&gt; {</span>
+<span class="nc" id="L53">            return service.save(client).map(c -&gt; {</span>
+<span class="nc" id="L54">                request.put(&quot;Cliente&quot;, c);</span>
+<span class="nc" id="L55">                request.put(&quot;mensaje&quot;, &quot;Cliente guardado con exito&quot;);</span>
+<span class="nc" id="L56">                request.put(&quot;timestamp&quot;, new Date());</span>
+<span class="nc" id="L57">                return ResponseEntity.created(URI.create(&quot;/api/clients/&quot;.concat(c.getIdClient()))).contentType(MediaType.APPLICATION_JSON).body(request);</span>
+            });
+        });
+    }
+
+    @PutMapping(&quot;/{id}&quot;)
+    public Mono&lt;ResponseEntity&lt;Client&gt;&gt; editClient(@Valid @RequestBody Client client, @PathVariable(&quot;id&quot;) String idClient) {
+<span class="nc" id="L64">        return service.update(client, idClient).map(c -&gt; ResponseEntity.created(URI.create(&quot;/api/clients/&quot;.concat(idClient))).contentType(MediaType.APPLICATION_JSON).body(c));</span>
+    }
+
+    @DeleteMapping(&quot;/{id}&quot;)
+    public Mono&lt;ResponseEntity&lt;Void&gt;&gt; deleteClient(@PathVariable(&quot;id&quot;) String idClient) {
+<span class="nc" id="L69">        return service.delete(idClient).then(Mono.just(new ResponseEntity&lt;Void&gt;(HttpStatus.NO_CONTENT)));</span>
+    }
+
+    @PutMapping(&quot;/documentNumber/{documentNumber}/profile/{profile}&quot;)
+    public Mono&lt;ResponseEntity&lt;Client&gt;&gt; updateProfileClient(@PathVariable(&quot;documentNumber&quot;) String documentNumber, @PathVariable(&quot;profile&quot;) String profile) {
+<span class="nc" id="L74">        return service.updateProfileByDocumentNumber(documentNumber, profile).map(c -&gt; ResponseEntity.created(URI.create(&quot;/api/clients/&quot;.concat(c.getIdClient()))).contentType(MediaType.APPLICATION_JSON).body(c));</span>
+    }
+
+    @GetMapping(&quot;/summaryProducts/{documentNumber}&quot;)
+    public Mono&lt;ResponseEntity&lt;SummaryProductsDto&gt;&gt; getSummaryOfCustomersProducts(@PathVariable String documentNumber) {
+<span class="nc" id="L79">        return service.getSummaryOfCustomersProducts(documentNumber)</span>
+<span class="nc" id="L80">                .map(c -&gt; ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON)</span>
+<span class="nc" id="L81">                        .body(c))</span>
+<span class="nc" id="L82">                .defaultIfEmpty(ResponseEntity.notFound().build());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

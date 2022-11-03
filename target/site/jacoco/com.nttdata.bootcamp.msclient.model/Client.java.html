@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Client.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ms-client</a> &gt; <a href="index.source.html" class="el_package">com.nttdata.bootcamp.msclient.model</a> &gt; <span class="el_source">Client.java</span></div><h1>Client.java</h1><pre class="source lang-java linenums">package com.nttdata.bootcamp.msclient.model;
+
+import com.nttdata.bootcamp.msclient.exception.ResourceNotFoundException;
+import lombok.ToString;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import reactor.core.publisher.Mono;
+import javax.validation.constraints.*;
+
+/**
+ * Class Client Model.
+ * Client microservice class Client.
+ */
+@Document(collection = &quot;Client&quot;)
+@Getter
+<span class="nc" id="L21">@Setter</span>
+<span class="nc" id="L22">@AllArgsConstructor</span>
+<span class="nc" id="L23">@NoArgsConstructor</span>
+<span class="nc" id="L24">@ToString</span>
+<span class="nc" id="L25">@Slf4j</span>
+public class Client {
+
+    @Id
+<span class="nc" id="L29">    private String idClient;</span>
+
+    @NotEmpty(message = &quot;no debe estar vacío&quot;)
+<span class="nc" id="L32">    private String names;</span>
+
+    @NotEmpty(message = &quot;no debe estar vacío&quot;)
+<span class="nc" id="L35">    private String surnames;</span>
+
+    @NotEmpty(message = &quot;no debe estar vacío&quot;)
+<span class="nc" id="L38">    private String clientType;</span>
+
+    @NotEmpty(message = &quot;no debe estar vacío&quot;)
+<span class="nc" id="L41">    private String documentType;</span>
+
+    @NotEmpty(message = &quot;no debe estar vacío&quot;)
+<span class="nc" id="L44">    private String documentNumber;</span>
+
+    @Max(value = 999999999, message = &quot;no debe tener más de 9 cifras&quot;)
+<span class="nc" id="L47">    private Integer cellphone;</span>
+
+    @Email(message = &quot;debe tener formato de correo&quot;)
+<span class="nc" id="L50">    private String email;</span>
+
+<span class="nc" id="L52">    private Boolean state;</span>
+
+<span class="nc" id="L54">    private String profile;</span>
+
+    public Mono&lt;Boolean&gt; validateClientType(String clientType) {
+<span class="nc" id="L57">        log.info(&quot;ini----validateClientType-------: &quot;);</span>
+<span class="nc" id="L58">        return Mono.just(clientType).flatMap(ct -&gt; {</span>
+<span class="nc" id="L59">            Boolean isOk = false;</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            if (clientType.equals(&quot;Personal&quot;)) {</span>
+<span class="nc" id="L61">                isOk = true;</span>
+            }
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            if (clientType.equals(&quot;Business&quot;)) {</span>
+<span class="nc" id="L64">                isOk = true;</span>
+            }
+<span class="nc" id="L66">            return Mono.just(isOk);</span>
+        });
+    }
+
+    public Mono&lt;Void&gt; validateClientProfile() {
+<span class="nc" id="L71">        log.info(&quot;ini----validateClientProfile-------: &quot;);</span>
+<span class="nc" id="L72">        return Mono.just(this.clientType).flatMap(ct -&gt; {</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            if (this.profile != null) {</span>
+<span class="nc" id="L74">                log.info(&quot;0----validateClientProfile-------this.profile: &quot; + this.profile);</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">                if (this.clientType.equals(&quot;Personal&quot;)) {</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">                    if (!this.profile.equals(&quot;VIP&quot;)) {</span>
+<span class="nc" id="L77">                        log.info(&quot;1----validateClientProfile-------: &quot;);</span>
+<span class="nc" id="L78">                        return Mono.error(new ResourceNotFoundException(&quot;Perfil&quot;, &quot;profile&quot;, this.profile));</span>
+                    }
+                }
+<span class="nc bnc" id="L81" title="All 2 branches missed.">                if (this.clientType.equals(&quot;Business&quot;)) {</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">                    if (!this.profile.equals(&quot;PYME&quot;)) {</span>
+<span class="nc" id="L83">                        log.info(&quot;2----validateClientProfile-------: &quot;);</span>
+<span class="nc" id="L84">                        return Mono.error(new ResourceNotFoundException(&quot;Perfil&quot;, &quot;profile&quot;, this.profile));</span>
+                    }
+                }
+            }
+<span class="nc" id="L88">            log.info(&quot;4----validateClientProfile-------: &quot;);</span>
+<span class="nc" id="L89">            return Mono.empty();</span>
+        });
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
