@@ -29,7 +29,7 @@ public class LoanRepository {
 
         log.info("Inicio----findLoanByDocumentNumber-------: ");
         WebClientConfig webconfig = new WebClientConfig();
-        Flux<Loan> alerts = webconfig.setUriData("http://" + propertyHostMsLoan + ":8081")
+        Flux<Loan> alerts = webconfig.setUriData("http://" + propertyHostMsLoan + ":8092")
                 .flatMap(d -> webconfig.getWebclient().get()
                         .uri("/api/loans/loansDetails/" + documentNumber).retrieve()
                         .onStatus(HttpStatus::is4xxClientError, clientResponse -> Mono.error(new Exception("Error 400")))

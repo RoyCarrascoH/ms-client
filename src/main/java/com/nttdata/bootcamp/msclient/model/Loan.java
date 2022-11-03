@@ -17,6 +17,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString
 public class Loan {
 
     @Id
@@ -28,5 +29,5 @@ public class Loan {
     private String currency;
     private Integer numberQuotas;
     private String status;
-    private Double balance;
+    private Double debtBalance;
 }
